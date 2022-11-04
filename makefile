@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: clcarre <clcarrer@student.42madrid.com>    +#+  +:+       +#+         #
+#    By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/27 13:43:31 by clcarre           #+#    #+#              #
-#    Updated: 2022/06/01 11:02:22 by clcarre          ###   ########.fr        #
+#    Updated: 2022/10/28 11:16:36 by clcarrer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME  	= so_long.a 
+NAME  	= so_long
 LIB 	= ar -rcs
 
 SRC		= main.c

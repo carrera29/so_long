@@ -3,101 +3,116 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clcarre <clcarrer@student.42madrid.com>    +#+  +:+       +#+        */
+/*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:28:09 by clcarre           #+#    #+#             */
-/*   Updated: 2022/06/01 18:09:21 by clcarre          ###   ########.fr       */
+/*   Updated: 2022/11/04 14:45:44 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 #include "so_long.h"
-/*
-La estructura t_data almacena todas las variables
-y bastará con invocar dicha struct en el main
-para usar esas variabes.
-*/
 
 void	ft_draw_pixel(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	*(unsigned int*)dst = color;
 }
 
-int	ft_end_game(t_data *data)
+int	ft_drawing(t_data *data)
 {
-	mlx_destroy_window(data->mlx, data->window);
+	t_picture	p;
+	int 		color[3];
+	static int	i;	
+
+	color[0] = 0xFF0000;
+	color[1] = 0x00FF00;
+	color[2] = 0x0000FF;
+	p.x = 100;
+	p.y = 100;
+	while (p.x < 400)
+	{
+		while (p.y < 400)
+		{
+			ft_draw_pixel(data, p.x, p.y, color[2]);
+			p.y++;
+		}
+		p.y = 100;
+		p.x++;
+	}
+	i++;
+	if (i == 2)
+		i = 0;
+	return (0);
+}
+
+int	end_game(t_data *data)
+{
+	mlx_destroy_window(data->ptr, data->window);
 	write(1, "Bye!\n", 5);
 	exit (EXIT_SUCCESS);
 }
 
-int	ft_key_hook(int keycode, t_data *data)
+// mouse_hook(int button, int x, int y, void *param);
+int	key_hook(int keycode, t_data *data)
 {
-	if (keycode == ESC_KEY)
-		ft_end_game(data);
-	else if (keycode == 16)
-		write (1, "key hook active\n", 16);
-	return (1);
-}
-
-int	ft_mouse_hook(int keycode)
-{
-	if (keycode == 1)
-		write (1, "Mouse hook active\n", 18);
-	return (0);
-}
-/*
-int	ft_render_uno(t_data *data, t_picture picture)
-{
-	int	x;
-	int	y;
-
-	x = 100;
-	while (x <= picture.x)
+	if (keycode == M_UP || keycode == A_UP)
+		write (1, "move up\n", 8);
+	else if (keycode == M_DOWN || keycode == A_DOWN)
+		write (1, "move down\n", 10);
+	else if (keycode == M_RIGHT || keycode == A_RIGHT)
+		write (1, "move right\n", 11);
+	else if (keycode == M_LEFT || keycode == A_LEFT)
+		write (1, "move left\n", 10);
+	else if (keycode == 53)
 	{
-		y = 100;
-		while (y <= picture.y)
-			ft_draw_pixel(data, x, y++, picture.color);
-		x++;
+		mlx_destroy_window(data->ptr, data->window);
+		write(1, "Bye!\n", 5);
+		exit (EXIT_SUCCESS);
 	}
 	return (0);
 }
 
-int	ft_render(t_data *data)
+int	mouse_hook(int keycode)
 {
-	ft_render_uno(data, (t_picture){300, 300, RED});
+	if (keycode == 4)
+		write (1, "move up\n", 8);
+	else if (keycode == 5)
+		write (1, "move down\n", 10);
+	else if (keycode == 2)
+		write (1, "move right\n", 11);
+	else if (keycode == 1)
+		write (1, "move left\n", 10);
 	return (0);
-}*/
+}
+
+// int	render(t_data *data)
+// {
+// 	// ft_drawing(data);
+// 	return (0);
+// }
 
 int	main(void)
 {
 	t_data	data;
+	int		img_width;
+	int		img_height;
 
-	data.mlx = mlx_init();
-	if (data.mlx == NULL)
-		return (ft_end_game(&data));
-	data.window = mlx_new_window(data.mlx, WINDOW_X, WINDOW_Y, "New data!");
-	if (data.window == NULL)
-	{
-		free(data.window);
-		return (ft_end_game(&data));
-	}
-	data.img = mlx_new_image(data.mlx, WINDOW_X, WINDOW_Y);
+	data.ptr = mlx_init();
+
+	data.window = mlx_new_window(data.ptr, WINDOW_X, WINDOW_Y, "NEW GAME!");
+	// mlx_hook(data.window, 2, 1L<<0, key_hook, &data);
+	// mlx_mouse_hook(data.window, mouse_hook, &data);
+	// mlx_hook(data.window, 17, 1L<<0, end_game, &data);
+	
+	data.img = mlx_xpm_file_to_image(data.ptr, "/Users/clcarrer/Desktop/sample_640×426.xpm", &img_width, &img_height);
+	// data.img = mlx_new_image(data.ptr, WINDOW_X, WINDOW_Y);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, \
 		&data.line_length, &data.endian);
-	mlx_put_image_to_window(data.mlx, data.window, data.img, 0, 0);
-	// (void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y);
-	mlx_hook(data.window, 2, (1L << 0), ft_key_hook, &data);
-	// (void *win_ptr, int (*funct_ptr)(), void *param) -> tecla es presionada
-	mlx_mouse_hook(data.window, ft_mouse_hook, &data);
-	//ft_render_uno(&data, (t_picture){300, 300, RED});
-	//mlx_loop_hook(data.mlx, ft_render, &data);
-	//(void *mlx_ptr, int (*funct_ptr)(), void *param)
-	ft_draw_pixel(&data, 10, 10, RED);
-	mlx_loop(data.mlx);
+
+	mlx_put_image_to_window(data.ptr, data.window, data.img, 0, 0);
+	// mlx_loop_hook(data.ptr, render, &data);
+	
+	mlx_loop(data.ptr);
 }
