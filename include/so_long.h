@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chloeplatt <chloeplatt@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:43:46 by clcarre           #+#    #+#             */
-/*   Updated: 2022/11/09 17:03:23 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/11/10 14:45:08 by chloeplatt       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include <mlx.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -44,19 +43,19 @@ typedef struct s_data
 
 typedef struct s_map
 {
-	char	**map;
-	char	*line;
-	char	*add_line;
-	int		max_x;
-	int		max_y;
-	int		x;
-	int		y;
-	int		p;
-	int		e;
-	int		c;
-	int		fd;
-	int		i;
-}				t_map;
+	char			**map;
+	char			*line;
+	char			*add_line;
+	unsigned long	max_x;
+	unsigned long	max_y;
+	int				x;
+	int				y;
+	int				p;
+	int				e;
+	int				c;
+	int				fd;
+	int				i;
+}					t_map;
 
 enum e_keycode
 {
@@ -86,32 +85,37 @@ enum e_colors
 	BLUE = 0x0000FF,
 };
 
-// checker
-void	checker_map(t_map *map);
-
-// errors
-void	clean_map(t_map	*map);
-void    *control_error(t_map *map, int error);
-
-// get map
-char	*sl_strjoin(char *str, char *aux);
-void	get_map(t_map *map, char **argv);
-
-int		main(int argc, char **argv);
-
-void	ft_draw_pixel(t_data *data, int x, int y, int color);
-int		ft_end_game(t_data *data);
-int		ft_key_hook(t_data *data, int keycode);
-int		ft_mouse_hook(int keycode);
-
-// utils
-char	**ft_split(char const *s, char c);
-
 // gnl
 char	*get_next_line(int fd);
 void	*ft_bzero(char *s);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char *str, char *aux);
+
+// checker_map
+void	check_char_to_char(t_map *map);
+void	checker_map(t_map *map);
+
+// errors
+void	clean_map(t_map *map);
+void    *control_error(t_map *map, int error);
+
+//draw_map
+void	put_imagine(t_map *map, int x, int y, char *patch);
+void	draw_map(t_map *map);
+
+// utils
+char	**ft_split(char const *s, char c);
+
+// get map
+void	get_values(t_map *map);
+void	get_map(t_map *map, char **argv);
+
+// so_long
+void	ft_draw_pixel(t_data *data, int x, int y, int color);
+int		ft_end_game(t_data *data);
+int		ft_key_hook(t_data *data, int keycode);
+int		ft_mouse_hook(int keycode);
+int		main(int argc, char **argv);
 
 #endif
