@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chloeplatt <chloeplatt@student.42.fr>      +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:43:46 by clcarre           #+#    #+#             */
-/*   Updated: 2022/11/10 14:45:08 by chloeplatt       ###   ########.fr       */
+/*   Updated: 2022/11/11 15:26:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ typedef struct s_picture
 	int		x;
 	int		y;
 	int		color;
-}				t_picture;
+}			t_picture;
+
+typedef struct s_mov
+{
+	int	movements;
+}		t_mov;
 
 typedef struct s_data
 {
@@ -107,15 +112,20 @@ void	draw_map(t_map *map);
 // utils
 char	**ft_split(char const *s, char c);
 
+// movements
+void	move_up(t_mov *mov, t_map *map, t_data *data);
+void	move_down(t_mov *mov, t_map *map, t_data *data);
+void	move_right(t_mov *mov, t_map *map, t_data *data);
+void	move_left(t_mov *mov, t_map *map, t_data *data);
+
 // get map
 void	get_values(t_map *map);
 void	get_map(t_map *map, char **argv);
 
 // so_long
-void	ft_draw_pixel(t_data *data, int x, int y, int color);
-int		ft_end_game(t_data *data);
-int		ft_key_hook(t_data *data, int keycode);
-int		ft_mouse_hook(int keycode);
+int		end_game(t_data *data);
+int		key_hook(t_data *data, int keycode);
+int		mouse_hook(int keycode);
 int		main(int argc, char **argv);
 
 #endif

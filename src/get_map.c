@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chloeplatt <chloeplatt@student.42.fr>      +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:12:41 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/11/10 12:39:12 by chloeplatt       ###   ########.fr       */
+/*   Updated: 2022/11/11 13:00:12 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	get_values(t_map *map)
 {
-	map->max_y = 0;
 	while (map->map[map->max_y + 1])
 		map->max_y++;
 	map->max_x = ft_strlen(map->map[0]) - 1;

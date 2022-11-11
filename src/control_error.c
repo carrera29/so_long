@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control_error.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chloeplatt <chloeplatt@student.42.fr>      +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 18:42:06 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/11/10 12:04:09 by chloeplatt       ###   ########.fr       */
+/*   Updated: 2022/11/11 12:14:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	clean_map(t_map *map)
 {
 	while (map->max_y--)
-		free((void *)map->map[map->max_y]);
+		free(map->map[map->max_y]);
 	free(map->map);
 }
 

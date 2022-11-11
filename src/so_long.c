@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chloeplatt <chloeplatt@student.42.fr>      +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:28:09 by clcarre           #+#    #+#             */
-/*   Updated: 2022/11/10 14:03:20 by chloeplatt       ###   ########.fr       */
+/*   Updated: 2022/11/11 15:25:44 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,32 +47,33 @@
 // 	return (0);
 // }
 
-// int	end_game(t_data *data)
-// {
-// 	mlx_destroy_window(data->ptr, data->window);
-// 	write(1, "Bye!\n", 5);
-// 	exit (EXIT_SUCCESS);
-// }
+int	end_game(t_data *data)
+{
+	t_map	*map;
+	
+	clean_map(map);
+	mlx_destroy_window(data->ptr, data->window);
+	exit (EXIT_SUCCESS);
+}
 
 // // mouse_hook(int button, int x, int y, void *param);
-// int	key_hook(int keycode, t_data *data)
-// {
-// 	if (keycode == M_UP || keycode == A_UP)
-// 		write (1, "move up\n", 8);
-// 	else if (keycode == M_DOWN || keycode == A_DOWN)
-// 		write (1, "move down\n", 10);
-// 	else if (keycode == M_RIGHT || keycode == A_RIGHT)
-// 		write (1, "move right\n", 11);
-// 	else if (keycode == M_LEFT || keycode == A_LEFT)
-// 		write (1, "move left\n", 10);
-// 	else if (keycode == 53)
-// 	{
-// 		mlx_destroy_window(data->ptr, data->window);
-// 		write(1, "Bye!\n", 5);
-// 		exit (EXIT_SUCCESS);
-// 	}
-// 	return (0);
-// }
+int	key_hook(int keycode, t_data *data)
+{
+	t_mov	mov;
+	t_map	map;
+	
+	if (keycode == M_UP || keycode == A_UP)
+		move_up(&mov, &map, data);
+	else if (keycode == M_DOWN || keycode == A_DOWN)
+		move_down(&mov, &map, data);
+	else if (keycode == M_RIGHT || keycode == A_RIGHT)
+		move_right(&mov, &map, data);
+	else if (keycode == M_LEFT || keycode == A_LEFT)
+		move_left(&mov, &map, data);
+	else if (keycode == 53)
+		end_game(data);
+	return (0);
+}
 
 // int	mouse_hook(int keycode)
 // {
@@ -93,38 +94,45 @@
 // 	return (0);
 // }
 
+
+void	v_init(t_map *map)
+
+{
+	t_mov	*mov;
+
+	mov.movements = 0;
+	map->max_x = 0;
+	map->max_y = 0;
+	map->y = 0;
+}
+
 int	main(int argc, char **argv)
 {
 	// t_data	data;
 	t_map	map;
 
-	if (argc == 1)
-		return (0);
-	get_map(&map, argv);
-	map.i = 0;
-	while (map.map[map.i])
-		printf("%s\n", map.map[map.i++]);
-	checker_map(&map);
-	draw_map(&map);
-	// int		img_width;
-	// int		img_height;
-
-	// data.ptr = mlx_init();
-
-	// data.window = mlx_new_window(data.ptr, WINDOW_X, WINDOW_Y, "NEW GAME!");
-	// // mlx_hook(data.window, 2, 1L<<0, key_hook, &data);
-	// // mlx_mouse_hook(data.window, mouse_hook, &data);
-	// // mlx_hook(data.window, 17, 1L<<0, end_game, &data);
+	if (argc > 1)
+	{
+		v_init(&map);
+		get_map(&map, argv);
+		checker_map(&map);
+		data.ptr = mlx_init();
+		data.window = mlx_new_window(data.ptr, map.max_x * 50, map.max_y * 50, "New Game!");
+		draw_map(&map);
+		// // mlx_mouse_hook(data.window, mouse_hook, &data);
+		mlx_hook(data.window, 2, 1L<<0, key_hook, &data);
+		mlx_hook(data.window, 17, 1L<<0, end_game, &data);
 	
-	// data.img = mlx_xpm_file_to_image(data.ptr, "/Users/clcarrer/Desktop/sample_640×426.xpm", &img_width, &img_height);
-	// // data.img = mlx_new_image(data.ptr, WINDOW_X, WINDOW_Y);
-	// data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, \
-	// 	&data.line_length, &data.endian);
+		// data.img = mlx_xpm_file_to_image(data.ptr, "/Users/clcarrer/Desktop/sample_640×426.xpm", &img_width, &img_height);
+		// // data.img = mlx_new_image(data.ptr, WINDOW_X, WINDOW_Y);
+		// data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, \
+		// 	&data.line_length, &data.endian);
 
-	// mlx_put_image_to_window(data.ptr, data.window, data.img, 0, 0);
-	// // mlx_loop_hook(data.ptr, render, &data);
+		// mlx_put_image_to_window(data.ptr, data.window, data.img, 0, 0);
+		// // mlx_loop_hook(data.ptr, render, &data);
 	
-	// mlx_loop(data.ptr);
-	clean_map(&map);
+		// mlx_loop(data.ptr);
+		clean_map(&map);
+	}
 	return (0);
 }

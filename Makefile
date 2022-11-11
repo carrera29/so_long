@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: chloeplatt <chloeplatt@student.42.fr>      +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/27 13:43:31 by clcarre           #+#    #+#              #
-#    Updated: 2022/11/10 10:27:13 by chloeplatt       ###   ########.fr        #
+#    Updated: 2022/11/11 11:54:31 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ INC_DIR	= 	./include
 
 SRC		= 	./src/checker_map.c \
 			./src/control_error.c \
+			./src/draw_map.c \
 			./src/ft_split.c \
 			./src/get_map.c \
 			./src/so_long.c
@@ -34,7 +35,7 @@ $(NAME) : 	$(OBJ) $(OBJ_GNL)
 %.o : 		/%.c
 	gcc -c $(CFLAGS) $< -o $@
 
-all	: 		$(NAME)
+all : 		$(NAME)
 
 clean : 
 	rm -f $(OBJ) $(OBJ_GNL)
