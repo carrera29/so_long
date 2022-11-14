@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:12:41 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/11/11 13:00:12 by marvin           ###   ########.fr       */
+/*   Updated: 2022/11/14 13:25:27 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	get_map(t_map *map, char **argv)
 	if (map->fd == -1)
 		control_error(map, 0);
 	map->add_line = NULL;
+	map->line = "";
 	while (map->line)
 	{
 		map->line = get_next_line(map->fd);

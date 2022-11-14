@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:28:09 by clcarre           #+#    #+#             */
-/*   Updated: 2022/11/11 15:25:44 by marvin           ###   ########.fr       */
+/*   Updated: 2022/11/14 14:14:26 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,13 @@
 
 int	end_game(t_data *data)
 {
-	t_map	*map;
+	t_map	map;
 	
-	clean_map(map);
+	clean_map(&map);
 	mlx_destroy_window(data->ptr, data->window);
 	exit (EXIT_SUCCESS);
 }
 
-// // mouse_hook(int button, int x, int y, void *param);
 int	key_hook(int keycode, t_data *data)
 {
 	t_mov	mov;
@@ -96,43 +95,37 @@ int	key_hook(int keycode, t_data *data)
 
 
 void	v_init(t_map *map)
-
 {
-	t_mov	*mov;
+	t_mov	mov;
 
 	mov.movements = 0;
 	map->max_x = 0;
 	map->max_y = 0;
+	map->p = 0;
+	map->e = 0;
+	map->c = 0;
 	map->y = 0;
 }
 
 int	main(int argc, char **argv)
 {
-	// t_data	data;
 	t_map	map;
-
+	t_data	data;
+	
 	if (argc > 1)
 	{
 		v_init(&map);
 		get_map(&map, argv);
 		checker_map(&map);
 		data.ptr = mlx_init();
-		data.window = mlx_new_window(data.ptr, map.max_x * 50, map.max_y * 50, "New Game!");
-		draw_map(&map);
+		data.window = mlx_new_window(data.ptr, (map.max_x + 1) * 50, (map.max_y + 1) * 50, "New Game!");
+		draw_map(&map, &data);
 		// // mlx_mouse_hook(data.window, mouse_hook, &data);
 		mlx_hook(data.window, 2, 1L<<0, key_hook, &data);
 		mlx_hook(data.window, 17, 1L<<0, end_game, &data);
 	
-		// data.img = mlx_xpm_file_to_image(data.ptr, "/Users/clcarrer/Desktop/sample_640×426.xpm", &img_width, &img_height);
-		// // data.img = mlx_new_image(data.ptr, WINDOW_X, WINDOW_Y);
-		// data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, \
-		// 	&data.line_length, &data.endian);
-
-		// mlx_put_image_to_window(data.ptr, data.window, data.img, 0, 0);
-		// // mlx_loop_hook(data.ptr, render, &data);
-	
-		// mlx_loop(data.ptr);
-		clean_map(&map);
+		// mlx_loop_hook(data.ptr, render, &data);
+		mlx_loop(data.ptr);
 	}
 	return (0);
 }

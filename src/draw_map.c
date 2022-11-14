@@ -1,17 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/14 09:16:36 by clcarrer          #+#    #+#             */
+/*   Updated: 2022/11/14 14:03:52 by clcarrer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "so_long.h"
 
-void	put_imagine(t_map *map, int x, int y, char *patch)
-{
-	t_data	*data;
-
-	data.img = mlx_xpm_file_to_image(data.ptr, patch, &img_width, &img_height);
-	mlx_put_image_to_window(data.ptr, data.window, data.img, x, y);
-}
-
-void	draw_map(t_map *map)
+void	draw_map(t_map *map, t_data *data)
 {
 	char	c;
+	
+	map->y = 0;
 	while (map->map[map->y])
 	{
 		map->x = 0;
@@ -19,15 +24,24 @@ void	draw_map(t_map *map)
 		{
 			c = map->map[map->y][map->x];
 			if (c == '1')
-				put_imagine(map, map->x, map->y, "./xpm_img/wall.xpm");
+				data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/wall.xpm", &data->img_w, &data->img_h);
 			else if (c == '0')
-				put_imagine(map, map->x, map->y, "./xpm_img/space.xpm");
+				data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/floor.xpm", &data->img_w, &data->img_h);
 			else if (c == 'P')
-				put_imagine(map, map->x, map->y, "./xpm_img/character.xpm")
+			{
+				data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/floor.xpm", &data->img_w, &data->img_h);
+				mlx_put_image_to_window(data->ptr, data->window, data->img, (map->x * 50), (map->y * 50));
+				data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/character.xpm", &data->img_w, &data->img_h);
+			}
 			else if (c == 'E')
-				put_imagine(map, map->x, map->y, "./xpm_img/exit.xpm")
+				data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/exit.xpm", &data->img_w, &data->img_h);
 			else if (c == 'C')
-				put_imagine(map, map->x, map->y, "./xpm_img/coin.xpm")
+			{
+				data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/floor.xpm", &data->img_w, &data->img_h);
+				mlx_put_image_to_window(data->ptr, data->window, data->img, (map->x * 50), (map->y * 50));
+				data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/coins.xpm", &data->img_w, &data->img_h);
+			}
+			mlx_put_image_to_window(data->ptr, data->window, data->img, (map->x * 50), (map->y * 50));
 			map->x++;
 		}
 		map->y++;

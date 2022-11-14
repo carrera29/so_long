@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:43:46 by clcarre           #+#    #+#             */
-/*   Updated: 2022/11/11 15:26:13 by marvin           ###   ########.fr       */
+/*   Updated: 2022/11/14 14:00:32 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
+# include <mlx.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <fcntl.h>
 
-# define WINDOW_X 960
-# define WINDOW_Y 540
 # define BUFFER_SIZE 1
 
 typedef struct s_picture
@@ -39,10 +38,8 @@ typedef struct s_data
 	void		*ptr;
 	void		*window;
 	void		*img;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
+	int			img_w;
+	int			img_h;
 	t_picture	picture;
 }				t_data;
 
@@ -106,8 +103,8 @@ void	clean_map(t_map *map);
 void    *control_error(t_map *map, int error);
 
 //draw_map
-void	put_imagine(t_map *map, int x, int y, char *patch);
-void	draw_map(t_map *map);
+void	put_imagine(int x, int y, char *patch);
+void	draw_map(t_map *map, t_data *data);
 
 // utils
 char	**ft_split(char const *s, char c);
@@ -124,8 +121,8 @@ void	get_map(t_map *map, char **argv);
 
 // so_long
 int		end_game(t_data *data);
-int		key_hook(t_data *data, int keycode);
-int		mouse_hook(int keycode);
+int		key_hook(int keycode, t_data *data);
+int		mouse_hook(int button, int x, int y, void *param);
 int		main(int argc, char **argv);
 
 #endif

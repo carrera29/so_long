@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control_error.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 18:42:06 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/11/11 12:14:38 by marvin           ###   ########.fr       */
+/*   Updated: 2022/11/14 10:39:11 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	*control_error(t_map *map, int error)
 	else if (error == 1)
 		write(1, "wrong map layout\n", 18);
 	else if (error == 2)
-		write(1, "duplicates were found\n", 23);
+		write(1, "the character is duplicated\n", 29);
 	else if (error == 3)
-		write(1, "not collectible was found\n", 27);
+		write(1, "not collectible or exit was found\n", 35);
 	clean_map(map);
 	exit (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chloeplatt <chloeplatt@student.42.fr>      +#+  +:+       +#+        */
+/*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 18:32:24 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/11/10 12:40:42 by chloeplatt       ###   ########.fr       */
+/*   Updated: 2022/11/14 12:57:04 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 void	check_char_to_char(t_map *map)
 {
-	map->p = 0;
-	map->e = 0;
-	map->c = 0;
-	map->y = 0;
 	while (map->map[map->y])
 	{
 		map->x = 0;
@@ -49,8 +45,8 @@ void	checker_map(t_map *map)
 	if (map->max_x == map->max_y)
 		control_error(map, 1);
 	check_char_to_char(map);
-	if (map->p != 1 || map->e != 1)
+	if (map->p != 1)
 		control_error(map, 2);
-	if (map->c < 1)
+	if (map->c < 1 || map->e < 1)
 		control_error(map, 3);
 }

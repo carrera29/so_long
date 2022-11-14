@@ -3,46 +3,52 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/27 13:43:31 by clcarre           #+#    #+#              #
-#    Updated: 2022/11/11 11:54:31 by marvin           ###   ########.fr        #
+#    Updated: 2022/11/14 09:53:22 by clcarrer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME  	= 	so_long
 
-INC_DIR	= 	./include
+INC_DIR = 	./include
 
-SRC		= 	./src/checker_map.c \
-			./src/control_error.c \
-			./src/draw_map.c \
-			./src/ft_split.c \
-			./src/get_map.c \
-			./src/so_long.c
-
-SRC_GNL =	./src/gnl/get_next_line_utils.c \
-			./src/gnl/get_next_line.c
-
-OBJ 	= 	$(SRC:.c=.o)
+SRC_SL	=	src/checker_map.c \
+			src/control_error.c \
+			src/draw_map.c \
+			src/ft_split.c \
+			src/get_map.c \
+			src/movements.c \
+			src/so_long.c
+			
+SRC_GNL	=	src/gnl/get_next_line.c \
+			src/gnl/get_next_line_utils.c
+		
+OBJ_SL 	= 	$(SRC_SL:.c=.o)
 OBJ_GNL = 	$(SRC_GNL:.c=.o)
 
 CFLAGS 	= 	-Wall -Wextra -Werror -I$(INC_DIR)
 
-$(NAME) : 	$(OBJ) $(OBJ_GNL)
-	gcc $(CFLAGS) $(OBJ) $(OBJ_GNL) -o $(NAME)
+LINKS 	=	-I libft -L libft \
+    		-I /usr/local/include -L /usr/local/lib \
+			-l mlx -l ft -framework OpenGL -framework Appkit
 
-%.o : 		/%.c
-	gcc -c $(CFLAGS) $< -o $@
+$(NAME) : $(OBJ_SL) $(OBJ_GNL)
+	gcc $(OBJ_SL) $(OBJ_GNL) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
-all : 		$(NAME)
+.c.o :
+	gcc $(CFLAGS) -Imlx -c $< -o $@
+
+all	: $(NAME)
 
 clean : 
-	rm -f $(OBJ) $(OBJ_GNL)
+	rm -f $(OBJ_SL) 
+	rm -f $(OBJ_GNL)
 
-fclean : 	clean
+fclean : clean
 	rm -f $(NAME)
 
-re : 		fclean all
+re : fclean all
 
-.PHONY : 	all clean fclean re
+.PHONY : all clean fclean re
