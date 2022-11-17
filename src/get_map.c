@@ -6,35 +6,29 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:12:41 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/11/14 13:25:27 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/11/17 15:15:23 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	get_values(t_map *map)
+void	get_map(t_data *data, char **argv)
 {
-	while (map->map[map->max_y + 1])
-		map->max_y++;
-	map->max_x = ft_strlen(map->map[0]) - 1;
-}
+	int	fd;
 
-void	get_map(t_map *map, char **argv)
-{
-	map->fd = open(argv[1], O_RDONLY);
-	if (map->fd == -1)
-		control_error(map, 0);
-	map->add_line = NULL;
-	map->line = "";
-	while (map->line)
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		exit (write(1, "fd error\n", 10));
+	data->map.add_line = NULL;
+	data->map.line = "";
+	while (data->map.line)
 	{
-		map->line = get_next_line(map->fd);
-		if (map->line == NULL || map->line[0] == '\n')
+		data->map.line = get_next_line(fd);
+		if (data->map.line == NULL || data->map.line[0] == '\n')
 			break ;
-		map->add_line = ft_strjoin(map->add_line, map->line);
-		free(map->line);
+		data->map.add_line = ft_strjoin(data->map.add_line, data->map.line);
+		free(data->map.line);
 	}
-	free (map->line);
-	map->map = ft_split(map->add_line, '\n');
-	get_values(map);
+	free (data->map.line);
+	data->map.map = ft_split(data->map.add_line, '\n');
 }

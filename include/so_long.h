@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:43:46 by clcarre           #+#    #+#             */
-/*   Updated: 2022/11/14 14:00:32 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/11/17 17:42:33 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,21 @@
 
 # define BUFFER_SIZE 1
 
-typedef struct s_picture
+typedef struct s_map
 {
-	int		x;
-	int		y;
-	int		color;
-}			t_picture;
-
-typedef struct s_mov
-{
-	int	movements;
-}		t_mov;
+	char			**map;
+	char			*line;
+	char			*add_line;
+	unsigned long	max_x;
+	unsigned long	max_y;
+	int				p_x;
+	int				p_y;
+	int				e_x;
+	int				e_y;
+	int				p;
+	int				e;
+	int				c;
+}					t_map;
 
 typedef struct s_data
 {
@@ -40,24 +44,9 @@ typedef struct s_data
 	void		*img;
 	int			img_w;
 	int			img_h;
-	t_picture	picture;
+	int			movements;
+	t_map		map;
 }				t_data;
-
-typedef struct s_map
-{
-	char			**map;
-	char			*line;
-	char			*add_line;
-	unsigned long	max_x;
-	unsigned long	max_y;
-	int				x;
-	int				y;
-	int				p;
-	int				e;
-	int				c;
-	int				fd;
-	int				i;
-}					t_map;
 
 enum e_keycode
 {
@@ -95,29 +84,28 @@ size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char *str, char *aux);
 
 // checker_map
-void	check_char_to_char(t_map *map);
-void	checker_map(t_map *map);
+void	check_char_to_char(t_data *data);
+void	checker_map(t_data *data);
 
 // errors
-void	clean_map(t_map *map);
-void    *control_error(t_map *map, int error);
+void	clean_map(t_data *data);
+void    *control_error(t_data *data, int error);
 
 //draw_map
 void	put_imagine(int x, int y, char *patch);
-void	draw_map(t_map *map, t_data *data);
+void	draw_map(t_data *data);
 
 // utils
 char	**ft_split(char const *s, char c);
 
 // movements
-void	move_up(t_mov *mov, t_map *map, t_data *data);
-void	move_down(t_mov *mov, t_map *map, t_data *data);
-void	move_right(t_mov *mov, t_map *map, t_data *data);
-void	move_left(t_mov *mov, t_map *map, t_data *data);
+void	move_up(t_data *data);
+void	move_down(t_data *data);
+void	move_right(t_data *data);
+void	move_left(t_data *data);
 
 // get map
-void	get_values(t_map *map);
-void	get_map(t_map *map, char **argv);
+void	get_map(t_data *data, char **argv);
 
 // so_long
 int		end_game(t_data *data);

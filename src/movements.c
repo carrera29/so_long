@@ -12,90 +12,116 @@
 
 #include "so_long.h"
 
-void	move_up(t_mov *mov, t_map *map, t_data *data)
+void	animation(t_data *data)
 {
-	char	p;
+	// int	i;
 
-	// put_imagine(map->x, map->y, "./xpm_img/p_up1.xpm");
-	p = map->map[map->y - 1][map->x];
-	if (p == 'E')
+	if (data->map.c == 0)
 	{
-		if (map->c == 0)
-			end_game(data);
+		data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/exit_open.xpm", &data->img_w, &data->img_h);
+		mlx_put_image_to_window(data->ptr, data->window, data->img, (data->map.e_x * 50), (data->map.e_y * 50));
 	}
-	else if (p != '1')
-	{
-		map->y--;
-		mov->movements++;
-	}
-	if (p == 'C')
-		map->c++;
-	data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/character.xpm", &data->img_w, &data->img_h);
-    mlx_put_image_to_window(data->ptr, data->window, data->img, (map->x * 50), (map->y * 50));
+	// i = 2;
+	// while (i != 0)
+	// {
+	// 	data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/floor.xpm", &data->img_w, &data->img_h);
+	// 	mlx_put_image_to_window(data->ptr, data->window, data->img, (data->map.p_x * 50), (data->map.p_y * 50));
+	// 	i--;
+	// }
 }
 
-void	move_down(t_mov *mov, t_map *map, t_data *data)
+void	move_up(t_data *data)
 {
 	char	p;
 
-	// put_imagine(map->x, map->y, "./xpm_img/p_dw1.xpm");
-	p = map->map[map->y + 1][map->x];
+	p = data->map.map[data->map.p_y - 1][data->map.p_x];
 	if (p == 'E')
 	{
-		if (map->c == 0)
+		if (data->map.c == 0)
 			end_game(data);
 	}
 	else if (p != '1')
 	{
-		map->y++;
-		mov->movements++;
+		data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/floor.xpm", &data->img_w, &data->img_h);
+		mlx_put_image_to_window(data->ptr, data->window, data->img, (data->map.p_x * 50), (data->map.p_y * 50));
+		data->map.p_y--;
+		data->movements++;
 	}
 	if (p == 'C')
-		map->c++;
+		data->map.c--;
+	animation(data);
 	data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/character.xpm", &data->img_w, &data->img_h);
-    mlx_put_image_to_window(data->ptr, data->window, data->img, (map->x * 50), (map->y * 50));
+	mlx_put_image_to_window(data->ptr, data->window, data->img, (data->map.p_x * 50), (data->map.p_y * 50));
 }
 
-void	move_right(t_mov *mov, t_map *map, t_data *data)
+void	move_down(t_data *data)
 {
-	char	p;
+		char	p;
 
-	// put_imagine(map->x, map->y, "./xpm_img/p_rg1.xpm");
-	p = map->map[map->y][map->x + 1];
+	p = data->map.map[data->map.p_y + 1][data->map.p_x];
 	if (p == 'E')
 	{
-		if (map->c == 0)
+		if (data->map.c == 0)
 			end_game(data);
 	}
 	else if (p != '1')
 	{
-		map->x++;
-		mov->movements++;
+		data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/floor.xpm", &data->img_w, &data->img_h);
+		mlx_put_image_to_window(data->ptr, data->window, data->img, (data->map.p_x * 50), (data->map.p_y * 50));
+		data->map.p_y++;
+		data->movements++;
 	}
 	if (p == 'C')
-		map->c++;
+		data->map.c--;
+	animation(data);
 	data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/character.xpm", &data->img_w, &data->img_h);
-    mlx_put_image_to_window(data->ptr, data->window, data->img, (map->x * 50), (map->y * 50));
+	mlx_put_image_to_window(data->ptr, data->window, data->img, (data->map.p_x * 50), (data->map.p_y * 50));
 }
 
-void	move_left(t_mov *mov, t_map *map, t_data *data)
+void	move_right(t_data *data)
 {
-	char	p;
+		char	p;
 
-	// put_imagine(map->x, map->y, "./xpm_img/p_lf1.xpm");
-	p = map->map[map->y][map->x - 1];
+	p = data->map.map[data->map.p_y][data->map.p_x + 1];
 	if (p == 'E')
 	{
-		if (map->c == 0)
+		if (data->map.c == 0)
 			end_game(data);
 	}
 	else if (p != '1')
 	{
-		map->x--;
-		mov->movements++;
+		data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/floor.xpm", &data->img_w, &data->img_h);
+		mlx_put_image_to_window(data->ptr, data->window, data->img, (data->map.p_x * 50), (data->map.p_y * 50));
+		data->map.p_x++;
+		data->movements++;
 	}
 	if (p == 'C')
-		map->c++;
+		data->map.c--;
+	animation(data);
 	data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/character.xpm", &data->img_w, &data->img_h);
-    mlx_put_image_to_window(data->ptr, data->window, data->img, (map->x * 50), (map->y * 50));
+	mlx_put_image_to_window(data->ptr, data->window, data->img, (data->map.p_x * 50), (data->map.p_y * 50));
+}
+
+void	move_left(t_data *data)
+{
+		char	p;
+
+	p = data->map.map[data->map.p_y][data->map.p_x - 1];
+	if (p == 'E')
+	{
+		if (data->map.c == 0)
+			end_game(data);
+	}
+	else if (p != '1')
+	{
+		data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/floor.xpm", &data->img_w, &data->img_h);
+		mlx_put_image_to_window(data->ptr, data->window, data->img, (data->map.p_x * 50), (data->map.p_y * 50));
+		data->map.p_x--;
+		data->movements++;
+	}
+	if (p == 'C')
+		data->map.c--;
+	animation(data);
+	data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/character.xpm", &data->img_w, &data->img_h);
+	mlx_put_image_to_window(data->ptr, data->window, data->img, (data->map.p_x * 50), (data->map.p_y * 50));
 }

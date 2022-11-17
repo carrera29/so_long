@@ -6,70 +6,30 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:28:09 by clcarre           #+#    #+#             */
-/*   Updated: 2022/11/14 14:14:26 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/11/17 17:05:52 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// void	ft_draw_pixel(t_data *data, int x, int y, int color)
-// {
-// 	char	*dst;
-
-// 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-// 	*(unsigned int*)dst = color;
-// }
-
-// int	ft_drawing(t_data *data)
-// {
-// 	t_picture	p;
-// 	int 		color[3];
-// 	static int	i;	
-
-// 	color[0] = 0xFF0000;
-// 	color[1] = 0x00FF00;
-// 	color[2] = 0x0000FF;
-// 	p.x = 100;
-// 	p.y = 100;
-// 	while (p.x < 400)
-// 	{
-// 		while (p.y < 400)
-// 		{
-// 			ft_draw_pixel(data, p.x, p.y, color[2]);
-// 			p.y++;
-// 		}
-// 		p.y = 100;
-// 		p.x++;
-// 	}
-// 	i++;
-// 	if (i == 2)
-// 		i = 0;
-// 	return (0);
-// }
-
 int	end_game(t_data *data)
 {
-	t_map	map;
-	
-	clean_map(&map);
+	clean_map(data);
 	mlx_destroy_window(data->ptr, data->window);
 	exit (EXIT_SUCCESS);
 }
 
 int	key_hook(int keycode, t_data *data)
 {
-	t_mov	mov;
-	t_map	map;
-	
 	if (keycode == M_UP || keycode == A_UP)
-		move_up(&mov, &map, data);
+		move_up(data);
 	else if (keycode == M_DOWN || keycode == A_DOWN)
-		move_down(&mov, &map, data);
+		move_down(data);
 	else if (keycode == M_RIGHT || keycode == A_RIGHT)
-		move_right(&mov, &map, data);
+		move_right(data);
 	else if (keycode == M_LEFT || keycode == A_LEFT)
-		move_left(&mov, &map, data);
-	else if (keycode == 53)
+		move_left(data);
+	if (keycode == 53)
 		end_game(data);
 	return (0);
 }
@@ -94,37 +54,37 @@ int	key_hook(int keycode, t_data *data)
 // }
 
 
-void	v_init(t_map *map)
+void	v_init(t_data *data)
 {
-	t_mov	mov;
-
-	mov.movements = 0;
-	map->max_x = 0;
-	map->max_y = 0;
-	map->p = 0;
-	map->e = 0;
-	map->c = 0;
-	map->y = 0;
+	data->movements = 0;
+	data->map.p = 0;
+	data->map.e = 0;
+	data->map.c = 0;
+	data->map.max_y = 0;
+	while (data->map.map[data->map.max_y + 1])
+		data->map.max_y++;
+	data->map.max_x = ft_strlen(data->map.map[0]) - 1;
 }
 
 int	main(int argc, char **argv)
 {
-	t_map	map;
 	t_data	data;
 	
 	if (argc > 1)
 	{
-		v_init(&map);
-		get_map(&map, argv);
-		checker_map(&map);
+		get_map(&data, argv);
+		int i = 0;
+		while (data.map.map[i])
+			printf("%s\n", data.map.map[i++]);
+		v_init(&data);
+		checker_map(&data);
 		data.ptr = mlx_init();
-		data.window = mlx_new_window(data.ptr, (map.max_x + 1) * 50, (map.max_y + 1) * 50, "New Game!");
-		draw_map(&map, &data);
-		// // mlx_mouse_hook(data.window, mouse_hook, &data);
+		data.window = mlx_new_window(data.ptr, (data.map.max_x + 1) * 50, (data.map.max_y + 1) * 50, "New Game!");
+		draw_map(&data);
+		// // // // mlx_mouse_hook(data.window, mouse_hook, &data);
 		mlx_hook(data.window, 2, 1L<<0, key_hook, &data);
 		mlx_hook(data.window, 17, 1L<<0, end_game, &data);
-	
-		// mlx_loop_hook(data.ptr, render, &data);
+		// // // mlx_loop_hook(data.ptr, render, &data);
 		mlx_loop(data.ptr);
 	}
 	return (0);
