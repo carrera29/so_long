@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:16:36 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/11/17 15:51:19 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/11/21 10:42:23 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	draw_map(t_data *data)
 	char	c;
 	int		y;
 	int		x;
-
+	
 	y = 0;
 	while (data->map.map[y])
 	{
@@ -49,4 +49,5 @@ void	draw_map(t_data *data)
 		}
 		y++;
 	}
+	mov_counter(data);
 }

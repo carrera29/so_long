@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:28:09 by clcarre           #+#    #+#             */
-/*   Updated: 2022/11/17 17:05:52 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/11/21 10:45:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	main(int argc, char **argv)
 		v_init(&data);
 		checker_map(&data);
 		data.ptr = mlx_init();
-		data.window = mlx_new_window(data.ptr, (data.map.max_x + 1) * 50, (data.map.max_y + 1) * 50, "New Game!");
+		data.window = mlx_new_window(data.ptr, (data.map.max_x + 1) * 50, (data.map.max_y + 2) * 50, "so_long!");
 		draw_map(&data);
 		// // // // mlx_mouse_hook(data.window, mouse_hook, &data);
 		mlx_hook(data.window, 2, 1L<<0, key_hook, &data);

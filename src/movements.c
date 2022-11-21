@@ -12,6 +12,15 @@
 
 #include "so_long.h"
 
+void	mov_counter(t_data *data)
+{
+	char	*num;
+
+	num = ft_itoa(data->movements);
+	mlx_string_put(data->ptr, data->window, (data->map.max_x * 50), (data->map.max_x * 50), RED, num);
+	free(num);
+}
+
 void	animation(t_data *data)
 {
 	// int	i;
@@ -49,9 +58,9 @@ void	move_up(t_data *data)
 	}
 	if (p == 'C')
 		data->map.c--;
-	animation(data);
 	data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/character.xpm", &data->img_w, &data->img_h);
 	mlx_put_image_to_window(data->ptr, data->window, data->img, (data->map.p_x * 50), (data->map.p_y * 50));
+	mov_counter(data);
 }
 
 void	move_down(t_data *data)
@@ -73,9 +82,9 @@ void	move_down(t_data *data)
 	}
 	if (p == 'C')
 		data->map.c--;
-	animation(data);
 	data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/character.xpm", &data->img_w, &data->img_h);
 	mlx_put_image_to_window(data->ptr, data->window, data->img, (data->map.p_x * 50), (data->map.p_y * 50));
+	mov_counter(data);
 }
 
 void	move_right(t_data *data)
@@ -97,9 +106,9 @@ void	move_right(t_data *data)
 	}
 	if (p == 'C')
 		data->map.c--;
-	animation(data);
 	data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/character.xpm", &data->img_w, &data->img_h);
 	mlx_put_image_to_window(data->ptr, data->window, data->img, (data->map.p_x * 50), (data->map.p_y * 50));
+	mov_counter(data);
 }
 
 void	move_left(t_data *data)
@@ -121,7 +130,7 @@ void	move_left(t_data *data)
 	}
 	if (p == 'C')
 		data->map.c--;
-	animation(data);
 	data->img = mlx_xpm_file_to_image(data->ptr, "./sprites/character.xpm", &data->img_w, &data->img_h);
 	mlx_put_image_to_window(data->ptr, data->window, data->img, (data->map.p_x * 50), (data->map.p_y * 50));
+	mov_counter(data);
 }
