@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:43:46 by clcarre           #+#    #+#             */
-/*   Updated: 2022/11/21 10:34:06 by marvin           ###   ########.fr       */
+/*   Updated: 2022/11/23 11:31:31 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_data
 	int			img_w;
 	int			img_h;
 	int			movements;
+	int			i;
+	int			position;
 	t_map		map;
 }				t_data;
 
@@ -97,8 +99,11 @@ void	draw_map(t_data *data);
 
 // utils
 char	**ft_split(char const *s, char c);
+void	v_init(t_data *data);
+char	*ft_itoa(int n);
 
 // movements
+void	mov_counter(t_data *data);
 void	move_up(t_data *data);
 void	move_down(t_data *data);
 void	move_right(t_data *data);
@@ -110,7 +115,6 @@ void	get_map(t_data *data, char **argv);
 // so_long
 int		end_game(t_data *data);
 int		key_hook(int keycode, t_data *data);
-int		mouse_hook(int button, int x, int y, void *param);
 int		main(int argc, char **argv);
 
 #endif

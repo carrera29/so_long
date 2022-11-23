@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chloeplatt <chloeplatt@student.42.fr>      +#+  +:+       +#+        */
+/*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 10:45:30 by clcarre           #+#    #+#             */
-/*   Updated: 2022/11/10 11:41:57 by chloeplatt       ###   ########.fr       */
+/*   Updated: 2022/11/23 13:02:31 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
