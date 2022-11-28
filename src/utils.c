@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:26:53 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/11/23 11:30:36 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/11/28 08:40:33 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	v_init(t_data *data)
 		data->map.max_y++;
 	data->map.max_x = ft_strlen(data->map.map[0]) - 1;
 }
+
+
 
 int	ft_contador(int n)
 {
