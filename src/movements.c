@@ -17,7 +17,8 @@ void	mov_counter(t_data *data)
 	char	*text;
 
 	text = ft_strjoin(ft_itoa(data->movements), " moves");
-	mlx_string_put(data->ptr, data->window, (data->map.max_x * 65), 60, RED, text);
+	mlx_string_put(data->ptr, data->window, \
+		(data->map.max_x * 65), 60, RED, text);
 	free(text);
 }
 

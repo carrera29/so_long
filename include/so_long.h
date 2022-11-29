@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:43:46 by clcarre           #+#    #+#             */
-/*   Updated: 2022/11/23 11:31:31 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/11/29 11:56:39 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_data
 
 enum e_keycode
 {
-	M_UP = 13, 
+	M_UP = 13,
 	A_UP = 126,
 	M_DOWN = 1,
 	A_DOWN = 125,
@@ -85,17 +85,20 @@ char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char *str, char *aux);
 
+// animation
+void	egg_animation(t_data *data);
+
 // checker_map
 void	check_char_to_char(t_data *data);
 void	checker_map(t_data *data);
 
 // errors
 void	clean_map(t_data *data);
-void    *control_error(t_data *data, int error);
+void	*control_error(t_data *data, int error);
 
 //draw_map
 void	put_imagine(int x, int y, char *patch);
-void	draw_map(t_data *data);
+int		draw_map(t_data *data);
 
 // utils
 char	**ft_split(char const *s, char c);
