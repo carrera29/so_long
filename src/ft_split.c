@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 15:04:41 by clcarre           #+#    #+#             */
-/*   Updated: 2022/11/08 17:56:00 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/11/30 09:57:19 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static char	**ft_str(char **split, char const *s, char c)
 			ii++;
 		}
 	}
-	split[ii] = 0;
+	split[ii] = NULL;
 	return (split);
 }
 

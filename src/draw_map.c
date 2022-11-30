@@ -6,11 +6,21 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:16:36 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/11/29 12:42:20 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/11/30 12:28:33 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	mov_counter(t_data *data)
+{
+	char	*text;
+
+	text = ft_strjoin(ft_itoa(data->movements), " moves");
+	mlx_string_put(data->ptr, data->window, \
+		(data->map.max_x * 50), 64, RED, text);
+	free(text);
+}
 
 void	put_img(t_data *data, int y, int x)
 {
@@ -18,18 +28,18 @@ void	put_img(t_data *data, int y, int x)
 
 	c = data->map.map[y][x];
 	if (c == '1')
-		data->img = mlx_xpm_file_to_image(data->ptr, \
-			"./sprites/wall.xpm", &data->img_w, &data->img_h);
+		algae_animation(data);
 	else if (c == 'E')
 		data->img = mlx_xpm_file_to_image(data->ptr, \
-			"./sprites/exit.xpm", &data->img_w, &data->img_h);
+			"./sprites/algae_1.xpm", &data->img_w, &data->img_h);
 	else if (c == 'C')
-		data->img = mlx_xpm_file_to_image(data->ptr, \
-			"./sprites/collect.xpm", &data->img_w, &data->img_h);
+		fish_animation(data);
+	else if (c == 'F')
+		crab_animation(data);
 	else if (c == 'P')
-		egg_animation(data);
+		squid_animation(data);
 	mlx_put_image_to_window(data->ptr, \
-		data->window, data->img, (x * 60), (y * 60));
+		data->window, data->img, (x * 64), (y * 64));
 }
 
 int	draw_map(t_data *data)
@@ -37,7 +47,6 @@ int	draw_map(t_data *data)
 	int		y;
 	int		x;
 
-	mlx_clear_window(data->ptr, data->window);
 	y = 0;
 	while (data->map.map[y])
 	{
@@ -45,9 +54,9 @@ int	draw_map(t_data *data)
 		while (data->map.map[y][x])
 		{
 			data->img = mlx_xpm_file_to_image(data->ptr, \
-				"./sprites/floor.xpm", &data->img_w, &data->img_h);
+				"./sprites/water.xpm", &data->img_w, &data->img_h);
 			mlx_put_image_to_window(data->ptr, \
-				data->window, data->img, (x * 60), (y * 60));
+				data->window, data->img, (x * 64), (y * 64));
 			put_img(data, y, x);
 			x++;
 		}

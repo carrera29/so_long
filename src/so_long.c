@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:28:09 by clcarre           #+#    #+#             */
-/*   Updated: 2022/11/29 11:38:28 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/11/30 12:11:48 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ int	main(int argc, char **argv)
 		get_map(&data, argv);
 		v_init(&data);
 		checker_map(&data);
-		get_map(&data, argv);
 		data.ptr = mlx_init();
 		data.window = mlx_new_window(data.ptr, \
-			(data.map.max_x + 1) * 70, (data.map.max_y + 1) * 60, "New Game!");
+			(data.map.max_x + 1) * 64, (data.map.max_y + 1) * 64, "New Game!");
+		draw_map(&data);
 		mlx_hook(data.window, 2, 1L << 0, key_hook, &data);
 		mlx_hook(data.window, 17, 1L << 0, end_game, &data);
-		mlx_loop_hook(data.ptr, draw_map, &data);
+		// mlx_loop_hook(data.ptr, draw_map, &data);
 		mlx_loop(data.ptr);
 	}
 	return (0);

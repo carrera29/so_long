@@ -6,7 +6,7 @@
 #    By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/27 13:43:31 by clcarre           #+#    #+#              #
-#    Updated: 2022/11/29 10:27:04 by clcarrer         ###   ########.fr        #
+#    Updated: 2022/11/30 12:04:56 by clcarrer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC_SL	=	src/checker_map.c \
 			src/animation.c \
 			src/control_error.c \
 			src/draw_map.c \
+			src/enemies.c \
 			src/ft_split.c \
 			src/get_map.c \
 			src/movements.c \

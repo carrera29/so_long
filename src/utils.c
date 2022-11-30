@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:26:53 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/11/28 08:40:33 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/11/30 09:45:22 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,23 @@ void	v_init(t_data *data)
 	data->map.max_x = ft_strlen(data->map.map[0]) - 1;
 }
 
+char	*ft_strdup(t_data *data, const char *s1)
+{
+	char	*str;
+	int		i;
 
+	str = malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!str)
+		clean_map(data);
+	i = 0;
+	while (s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
 
 int	ft_contador(int n)
 {

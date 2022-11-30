@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:43:46 by clcarre           #+#    #+#             */
-/*   Updated: 2022/11/29 11:56:39 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/11/30 12:27:08 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,18 @@
 typedef struct s_map
 {
 	char			**map;
+	char			**check_map;
 	char			*line;
 	char			*add_line;
 	unsigned long	max_x;
 	unsigned long	max_y;
 	int				p_x;
 	int				p_y;
-	int				e_x;
-	int				e_y;
 	int				p;
 	int				e;
-	int				c;
+	int				c;			
+	int				f;
+	int				**enemy;
 }					t_map;
 
 typedef struct s_data
@@ -86,27 +87,38 @@ size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char *str, char *aux);
 
 // animation
-void	egg_animation(t_data *data);
+void	algae_animation(t_data *data);
+void	fish_animation(t_data *data);
+void	crab_animation(t_data *data);
+void	squid_animation(t_data *data);
 
 // checker_map
 void	check_char_to_char(t_data *data);
+void	copy_map(t_data *data);
+int		find_the_exit(char **map, int y, int x, int collectives);
 void	checker_map(t_data *data);
 
 // errors
 void	clean_map(t_data *data);
+void	clean_check_map(t_data *data, int i);
 void	*control_error(t_data *data, int error);
 
 //draw_map
+void	mov_counter(t_data *data);
 void	put_imagine(int x, int y, char *patch);
 int		draw_map(t_data *data);
+
+// enemies
+void	enemies_coor(t_data *data);
+void	control_enemies(t_data *data);
 
 // utils
 char	**ft_split(char const *s, char c);
 void	v_init(t_data *data);
+char	*ft_strdup(t_data *data, const char *s1);
 char	*ft_itoa(int n);
 
 // movements
-void	mov_counter(t_data *data);
 void	move_up(t_data *data);
 void	move_down(t_data *data);
 void	move_right(t_data *data);
