@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:43:46 by clcarre           #+#    #+#             */
-/*   Updated: 2022/11/30 12:27:08 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/12/12 15:27:06 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,29 +88,27 @@ char	*ft_strjoin(char *str, char *aux);
 
 // animation
 void	algae_animation(t_data *data);
-void	fish_animation(t_data *data);
-void	crab_animation(t_data *data);
+void	clam_animation(t_data *data);
+void	jellyfish_animation(t_data *data);
+void	fishes_animation(t_data *data);
 void	squid_animation(t_data *data);
 
 // checker_map
 void	check_char_to_char(t_data *data);
-void	copy_map(t_data *data);
-int		find_the_exit(char **map, int y, int x, int collectives);
+int		find_the_exit(t_data *data, int y, int x, int collectives);
 void	checker_map(t_data *data);
 
 // errors
 void	clean_map(t_data *data);
-void	clean_check_map(t_data *data, int i);
+void	clean_check_map(t_data *data);
 void	*control_error(t_data *data, int error);
 
 //draw_map
 void	mov_counter(t_data *data);
+void	draw_water(t_data *data, int x, int y);
 void	put_imagine(int x, int y, char *patch);
 int		draw_map(t_data *data);
-
-// enemies
-void	enemies_coor(t_data *data);
-void	control_enemies(t_data *data);
+int		first_draw_map(t_data *data);
 
 // utils
 char	**ft_split(char const *s, char c);

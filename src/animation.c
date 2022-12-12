@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 10:06:47 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/11/30 12:26:19 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/12/12 09:32:22 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,38 +30,59 @@ void	algae_animation(t_data *data)
 	}
 }
 
-void	fish_animation(t_data *data)
+void	clam_animation(t_data *data)
 {
 	static int	i;
 
-	if (i == 0)
+	if (data->map.c <= 0)
+		data->img = mlx_xpm_file_to_image(data->ptr, \
+			"./sprites/clam_open.xpm", &data->img_w, &data->img_h);
+	else if (i == 0)
 	{
 		data->img = mlx_xpm_file_to_image(data->ptr, \
-			"./sprites/fish_1.xpm", &data->img_w, &data->img_h);
+			"./sprites/clam_1.xpm", &data->img_w, &data->img_h);
 		i++;
 	}
 	else
 	{
 		data->img = mlx_xpm_file_to_image(data->ptr, \
-			"./sprites/fish_2.xpm", &data->img_w, &data->img_h);
+			"./sprites/clam_2.xpm", &data->img_w, &data->img_h);
 		i = 0;
 	}
 }
 
-void	crab_animation(t_data *data)
+void	jellyfish_animation(t_data *data)
+{
+	static int	i;
+
+	if (i == data->map.f + 1)
+	{
+		data->img = mlx_xpm_file_to_image(data->ptr, \
+			"./sprites/jellyfish_1.xpm", &data->img_w, &data->img_h);
+		i = 0;
+	}
+	else
+	{
+		data->img = mlx_xpm_file_to_image(data->ptr, \
+			"./sprites/jellyfish_2.xpm", &data->img_w, &data->img_h);
+		i++;
+	}
+}
+
+void	fishes_animation(t_data *data)
 {
 	static int	i;
 
 	if (i == 0)
 	{
 		data->img = mlx_xpm_file_to_image(data->ptr, \
-			"./sprites/crab_1.xpm", &data->img_w, &data->img_h);
+			"./sprites/fishes_1.xpm", &data->img_w, &data->img_h);
 		i++;
 	}
 	else
 	{
 		data->img = mlx_xpm_file_to_image(data->ptr, \
-			"./sprites/crab_2.xpm", &data->img_w, &data->img_h);
+			"./sprites/fishes_2.xpm", &data->img_w, &data->img_h);
 		i = 0;
 	}
 }
