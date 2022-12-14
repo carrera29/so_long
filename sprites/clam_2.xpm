@@ -1,10 +1,10 @@
 /* XPM */
-static char *dc4218a1afa74a2fe730caa6dfec5777p23LyWx9gp56N35n[] = {
+static char *d3f0385e9123421bd2d5ba218d5356b76GoYVPuJRyMCKBg3[] = {
 /* columns rows colors chars-per-pixel */
 "64 64 3 1 ",
 "  c None",
 ". c #0024FF",
-"X c #FF008D",
+"X c #74EFFE",
 /* pixels */
 "                                                                ",
 "                                                                ",
@@ -14,6 +14,11 @@ static char *dc4218a1afa74a2fe730caa6dfec5777p23LyWx9gp56N35n[] = {
 "                                                                ",
 "                                                                ",
 "                                                                ",
+"                                                                ",
+"                                                                ",
+"                                                                ",
+"                                                                ",
+"                                                                ",
 "                           ..........                           ",
 "                           ..........                           ",
 "                         ....XXXXXX....                         ",
@@ -58,11 +63,6 @@ static char *dc4218a1afa74a2fe730caa6dfec5777p23LyWx9gp56N35n[] = {
 "                 ....XXXXXX..      ..XXXXXX....                 ",
 "                   ..........      ..........                   ",
 "                   ..........      ..........                   ",
-"                                                                ",
-"                                                                ",
-"                                                                ",
-"                                                                ",
-"                                                                ",
 "                                                                ",
 "                                                                ",
 "                                                                ",
