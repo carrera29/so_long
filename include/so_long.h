@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:43:46 by clcarre           #+#    #+#             */
-/*   Updated: 2022/12/12 15:27:06 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:11:41 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct s_data
 	void		*ptr;
 	void		*window;
 	void		*img;
+	char		c;
+	int			fd;
 	int			img_w;
 	int			img_h;
 	int			movements;
@@ -86,6 +88,12 @@ char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char *str, char *aux);
 
+// bonus
+void	enemies_coor(t_data *data);
+void	control_enemies(t_data *data);
+void	enemy_mov(t_data *data, int y, int x, int i);
+void	move_enemies(t_data *data);
+
 // animation
 void	algae_animation(t_data *data);
 void	clam_animation(t_data *data);
@@ -98,23 +106,21 @@ void	check_char_to_char(t_data *data);
 int		find_the_exit(t_data *data, int y, int x, int collectives);
 void	checker_map(t_data *data);
 
-// errors
+// control errors
 void	clean_map(t_data *data);
 void	clean_check_map(t_data *data);
 void	*control_error(t_data *data, int error);
 
-//draw_map
+// draw_map
 void	mov_counter(t_data *data);
 void	draw_water(t_data *data, int x, int y);
 void	put_imagine(int x, int y, char *patch);
 int		draw_map(t_data *data);
 int		first_draw_map(t_data *data);
 
-// utils
-char	**ft_split(char const *s, char c);
-void	v_init(t_data *data);
-char	*ft_strdup(t_data *data, const char *s1);
-char	*ft_itoa(int n);
+// end game
+void	get_map(t_data *data, char **argv);
+int		exit_game(t_data *data);
 
 // movements
 void	move_up(t_data *data);
@@ -122,12 +128,14 @@ void	move_down(t_data *data);
 void	move_right(t_data *data);
 void	move_left(t_data *data);
 
-// get map
-void	get_map(t_data *data, char **argv);
-
-// so_long
-int		end_game(t_data *data);
+// start game
+void	end_game(t_data *data, int i);
 int		key_hook(int keycode, t_data *data);
-int		main(int argc, char **argv);
+
+// utils
+char	**ft_split(char const *s, char c);
+void	v_init(t_data *data);
+char	*ft_strdup(t_data *data, const char *s1);
+char	*ft_itoa(int n);
 
 #endif
