@@ -6,7 +6,7 @@
 #    By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/27 13:43:31 by clcarre           #+#    #+#              #
-#    Updated: 2022/12/15 16:35:42 by clcarrer         ###   ########.fr        #
+#    Updated: 2022/12/16 16:27:57 by clcarrer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,21 +51,21 @@ $(NAME_B) : $(OBJ_B) $(OBJ_CMM) $(OBJ_GNL)
 	gcc $(OBJ_B) $(OBJ_CMM) $(OBJ_GNL) -lmlx -framework OpenGL -framework AppKit -o $(NAME_B)
 
 .c.o :
-	gcc $(CFLAGS) -Imlx -c $< -o $@
+	@gcc $(CFLAGS) -Imlx -c $< -o $@
 
 all	: $(NAME)
 
 bonus : $(NAME_B)
 
 clean : 
-	rm -f $(OBJ_SL)
-	rm -f $(OBJ_B)
-	rm -f $(OBJ_CMM)
-	rm -f $(OBJ_GNL)
+	@rm -f $(OBJ_SL)
+	@rm -f $(OBJ_B)
+	@rm -f $(OBJ_CMM)
+	@rm -f $(OBJ_GNL)
 
 fclean : clean
-	rm -f $(NAME)
-	rm -f $(NAME_B)
+	@rm -f $(NAME)
+	@rm -f $(NAME_B)
 
 re : fclean all
 
