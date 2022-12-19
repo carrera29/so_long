@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 11:39:25 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/12/16 16:20:22 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:20:45 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,7 @@ void	move_enemies(t_data *data)
 	{
 		y = data->map.enemy[i][0];
 		x = data->map.enemy[i][1];
-		// if (data->map.map[y + 1][x] == 'P' || data->map.map[y - 1][x] == 'P'
-		// || data->map.map[y][x + 1] == 'P' || data->map.map[y][x - 1] == 'P')
-		// {
-		// 	data->map.map[y][x] = '0';
-		// 	draw_water(data, x, y);
-		// 	data->map.map[data->map.p_y][data->map.p_x] = 'F';
-		// }
-		// else
-			enemy_direction(data, y, x, i);
+		enemy_direction(data, y, x, i);
 		i++;
 	}
 }
@@ -107,12 +99,11 @@ void	control_enemies(t_data *data)
 {
 	int	i;
 
-	printf(" el num de enemigos es %d\n", data->map.f);
-	data->map.enemy = malloc(sizeof(int **) * data->map.f);
+	data->map.enemy = malloc(sizeof(int *) * data->map.f);
 	if (!data->map.enemy)
 		control_error(data, 5);
 	i = 0;
-	while (i <= data->map.f)
+	while (i < data->map.f)
 	{
 		data->map.enemy[i] = malloc(sizeof(int) * 2);
 		if (!data->map.enemy[i])

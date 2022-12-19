@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:32:41 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/12/16 15:58:09 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:35:33 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,16 @@ int	exit_game(t_data *data)
 {
 	int	i;
 
-	i = 0;
 	clean_map(data);
-	while (i <= data->map.f)
-		free(data->map.enemy[i++]);
-	close(data->fd);
+	if (data->map.f > 0)
+	{
+		i = 0;
+		while (i < data->map.f)
+		{
+			free(data->map.enemy[i]);
+			i++;
+		}
+	}
 	mlx_destroy_window(data->ptr, data->window);
 	exit (EXIT_SUCCESS);
 }

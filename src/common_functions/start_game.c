@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:12:41 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/12/15 15:33:22 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/12/19 10:48:19 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ void	get_map(t_data *data, char **argv)
 	free (data->map.line);
 	data->map.map = ft_split(data->map.add_line, '\n');
 	free (data->map.add_line);
+	close(data->fd);
 }

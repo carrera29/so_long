@@ -6,22 +6,16 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 14:53:06 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/12/16 13:11:57 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:34:34 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_leaks(void)
-{
-	system("leaks -q so_long");
-}
-
 int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	atexit(check_leaks);
 	if (argc > 1)
 	{
 		get_map(&data, argv);
