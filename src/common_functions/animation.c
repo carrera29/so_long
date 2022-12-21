@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 10:06:47 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/12/12 09:32:22 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/12/21 09:28:21 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,20 @@ void	jellyfish_animation(t_data *data)
 	}
 }
 
-void	fishes_animation(t_data *data)
+void	crab_animation(t_data *data)
 {
 	static int	i;
 
 	if (i == 0)
 	{
 		data->img = mlx_xpm_file_to_image(data->ptr, \
-			"./sprites/fishes_1.xpm", &data->img_w, &data->img_h);
+			"./sprites/crab_1.xpm", &data->img_w, &data->img_h);
 		i++;
 	}
 	else
 	{
 		data->img = mlx_xpm_file_to_image(data->ptr, \
-			"./sprites/fishes_2.xpm", &data->img_w, &data->img_h);
+			"./sprites/crab_2.xpm", &data->img_w, &data->img_h);
 		i = 0;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:16:36 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/12/15 15:20:58 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/12/21 09:28:14 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	put_img(t_data *data, int y, int x)
 	else if (c == 'E')
 		clam_animation(data);
 	else if (c == 'C')
-		fishes_animation(data);
+		crab_animation(data);
 	else if (c == 'P')
 		squid_animation(data);
 	else if (c == 'F')

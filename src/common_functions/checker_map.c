@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 18:32:24 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/12/15 14:58:07 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/12/21 09:45:22 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,10 @@ void	checker_map(t_data *data)
 	check_char_to_char(data);
 	if (data->map.p != 1)
 		control_error(data, 2);
-	if (data->map.c < 1 || data->map.e != 1)
+	if (data->map.c < 1)
 		control_error(data, 3);
+	if (data->map.e != 1)
+		control_error(data, 4);
 	if (find_the_exit(data, data->map.p_y, data->map.p_x, data->map.c) == 0)
 		control_error(data, 1);
 	clean_map(data);

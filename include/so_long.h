@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:43:46 by clcarre           #+#    #+#             */
-/*   Updated: 2022/12/19 13:06:23 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/12/21 09:28:35 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	move_enemies(t_data *data);
 void	algae_animation(t_data *data);
 void	clam_animation(t_data *data);
 void	jellyfish_animation(t_data *data);
-void	fishes_animation(t_data *data);
+void	crab_animation(t_data *data);
 void	squid_animation(t_data *data);
 
 // checker_map

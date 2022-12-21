@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 18:42:06 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/12/19 11:47:49 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/12/21 09:49:27 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ void	*control_error(t_data *data, int error)
 	if (error == 1)
 		write(1, "wrong map layout\n", 18);
 	else if (error == 2)
-		write(1, "wrong number of character\n", 27);
+		write(1, "wrong number of characters\n", 28);
 	else if (error == 3)
-		write(1, "not collectible or exit was found\n", 35);
+		write(1, "not collectibles were found\n", 29);
 	else if (error == 4)
-		write(1, "not exit was found\n", 20);
+		write(1, "wrong number of exits\n", 23);
 	else if (error == 5)
 		write(1, "malloc error\n", 14);
 	else if (error == 6 || error == 7)

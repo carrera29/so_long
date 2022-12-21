@@ -1,5 +1,5 @@
 /* XPM */
-static char *d3f0385e9123421bd2d5ba218d5356b76GoYVPuJRyMCKBg3[] = {
+static char *_b69eea3077744b99af9030259c68f5cuAPdH3lKNYUeRhha[] = {
 /* columns rows colors chars-per-pixel */
 "64 64 3 1 ",
 "  c None",
@@ -14,15 +14,8 @@ static char *d3f0385e9123421bd2d5ba218d5356b76GoYVPuJRyMCKBg3[] = {
 "                                                                ",
 "                                                                ",
 "                                                                ",
-"                                                                ",
-"                                                                ",
-"                                                                ",
-"                                                                ",
-"                                                                ",
-"                           ..........                           ",
-"                           ..........                           ",
-"                         ....XXXXXX....                         ",
-"                         ....XXXXXX....                         ",
+"                         ..............                         ",
+"                         ..............                         ",
 "                     ....XXXXXXXXXXXXXX....                     ",
 "                     ....XXXXXXXXXXXXXX....                     ",
 "                 ....XXXX..XXXXXXXXXX..XXXX....                 ",
@@ -63,6 +56,13 @@ static char *d3f0385e9123421bd2d5ba218d5356b76GoYVPuJRyMCKBg3[] = {
 "                 ....XXXXXX..      ..XXXXXX....                 ",
 "                   ..........      ..........                   ",
 "                   ..........      ..........                   ",
+"                                                                ",
+"                                                                ",
+"                                                                ",
+"                                                                ",
+"                                                                ",
+"                                                                ",
+"                                                                ",
 "                                                                ",
 "                                                                ",
 "                                                                ",
