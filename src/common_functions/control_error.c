@@ -63,6 +63,11 @@ void	*control_error(t_data *data, int error)
 		if (error == 7)
 			exit (1);
 	}
+	else if (error == 8)
+	{
+		write(1, "file error\n", 11);
+		exit (1);
+	}
 	clean_map(data);
 	exit (1);
 }
