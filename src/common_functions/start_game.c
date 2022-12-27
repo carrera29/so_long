@@ -27,8 +27,19 @@ int	key_hook(int keycode, t_data *data)
 	return (0);
 }
 
+void	check_file(t_data *data, char **argv)
+{
+	size_t	i;
+	i = 1;
+	while (argv[i])
+		i++;
+	if (ft_strncmp(argv[i - 4], ".ber", 4) != 0)
+		control_error(data, 8);
+}
+
 void	get_map(t_data *data, char **argv)
 {
+	check_file(data, argv);
 	data->fd = open(argv[1], O_RDONLY);
 	if (data->fd == -1)
 		exit (write(1, "fd error\n", 10));
