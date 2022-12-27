@@ -30,7 +30,7 @@ int	key_hook(int keycode, t_data *data)
 void	check_file(t_data *data, char **argv)
 {
 	size_t	i;
-	i = 1;
+	i = 0;
 	while (argv[i])
 		i++;
 	if (ft_strncmp(argv[i - 4], ".ber", 4) != 0)
