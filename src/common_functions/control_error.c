@@ -6,24 +6,12 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 18:42:06 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/12/21 09:49:27 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/12/30 11:18:15 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	unsigned int	i;
-
-	i = 0;
-	if (n == 0)
-		return (0);
-	while (s1[i] && s1[i] == s2[i] && i < ((unsigned int)n - 1))
-		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-	
 void	clean_map(t_data *data)
 {
 	int	y;
@@ -32,16 +20,6 @@ void	clean_map(t_data *data)
 	while (data->map.map[y] != NULL)
 		free(data->map.map[y++]);
 	free(data->map.map);
-}
-
-void	clean_check_map(t_data *data)
-{
-	int	y;
-
-	y = 0;
-	while (data->map.check_map[y] != NULL)
-		free(data->map.check_map[y++]);
-	free(data->map.check_map);
 }
 
 void	*control_error(t_data *data, int error)
@@ -63,11 +41,8 @@ void	*control_error(t_data *data, int error)
 		if (error == 7)
 			exit (1);
 	}
-	else if (error == 8)
-	{
-		write(1, "file error\n", 11);
+	if (error == 8)
 		exit (1);
-	}
 	clean_map(data);
 	exit (1);
 }

@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:43:46 by clcarre           #+#    #+#             */
-/*   Updated: 2022/12/21 09:28:35 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/12/30 11:39:10 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,11 @@ size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char *str, char *aux);
 
 // bonus
+void	enemy_moves(t_data *data, int i, char c);
+void	enemy_direction(t_data *data, int y, int x, int i);
+void	move_enemies(t_data *data);
 void	enemies_coor(t_data *data);
 void	control_enemies(t_data *data);
-void	enemy_mov(t_data *data, int y, int x, int i);
-void	move_enemies(t_data *data);
 
 // animation
 void	algae_animation(t_data *data);
@@ -108,7 +109,6 @@ void	checker_map(t_data *data);
 
 // control errors
 void	clean_map(t_data *data);
-void	clean_check_map(t_data *data);
 void	*control_error(t_data *data, int error);
 
 // draw_map
@@ -119,7 +119,7 @@ int		draw_map(t_data *data);
 int		first_draw_map(t_data *data);
 
 // end game
-void	get_map(t_data *data, char **argv);
+void	end_game(t_data *data, int i);
 int		exit_game(t_data *data);
 
 // movements
@@ -129,10 +129,12 @@ void	move_right(t_data *data);
 void	move_left(t_data *data);
 
 // start game
-void	end_game(t_data *data, int i);
 int		key_hook(int keycode, t_data *data);
+void	check_file(t_data *data, char **argv);
+void	get_map(t_data *data, char **argv);
 
 // utils
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	**ft_split(char const *s, char c);
 void	v_init(t_data *data);
 char	*ft_strdup(t_data *data, const char *s1);

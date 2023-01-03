@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:12:41 by clcarrer          #+#    #+#             */
-/*   Updated: 2022/12/19 10:48:19 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/12/30 11:16:21 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ int	key_hook(int keycode, t_data *data)
 void	check_file(t_data *data, char **argv)
 {
 	size_t	i;
+
 	i = 0;
-	while (argv[i])
+	while (argv[1][i] != '\0')
 		i++;
-	if (ft_strncmp(argv[i - 4], ".ber", 4) != 0)
+	if (ft_strncmp(&argv[1][i - 4], ".ber", 4) != 0)
 		control_error(data, 8);
 }
 

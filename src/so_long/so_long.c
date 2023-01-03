@@ -6,7 +6,7 @@
 /*   By: clcarrer <clcarrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 12:28:09 by clcarre           #+#    #+#             */
-/*   Updated: 2022/12/21 09:52:29 by clcarrer         ###   ########.fr       */
+/*   Updated: 2022/12/30 11:38:52 by clcarrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	if (argc > 1)
+	if (argc == 2)
 	{
 		get_map(&data, argv);
 		v_init(&data);
